@@ -1,0 +1,5 @@
+/* The visible subtitle UI lives in a Shadow DOM. This file only reserves
+   stable markers for inspection and does not alter Disney+'s page styles. */
+[data-dds-overlay] {
+  isolation: isolate;
+}

@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Disney+ Dual Subtitles",
+  "version": "0.1.6",
+  "description": "Display two synchronized official subtitle tracks on Disney+, with SRT/VTT fallback.",
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": [
+    "https://www.disneyplus.com/*",
+    "https://media.dssott.com/*",
+    "https://*.media.dssott.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Disney+ Dual Subtitles",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.disneyplus.com/*"],
+      "js": ["bridge.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://www.disneyplus.com/*"],
+      "js": ["core.js", "content.js"],
+      "css": ["content.css"],
+      "run_at": "document_start",
+      "world": "ISOLATED"
+    }
+  ]
+}

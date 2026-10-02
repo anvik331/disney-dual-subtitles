@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Disney+ Dual Subtitles</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="brand-mark" aria-hidden="true">雙</div>
+      <div>
+        <h1>Disney+ 雙字幕</h1>
+        <p>官方字幕優先，本機疊加顯示</p>
+      </div>
+      <label class="switch" title="啟用或停用雙字幕">
+        <input id="enabled" type="checkbox" />
+        <span></span>
+      </label>
+    </header>
+
+    <main>
+      <section id="status-card" class="status-card" aria-live="polite">
+        <span id="status-dot" class="status-dot"></span>
+        <div>
+          <strong id="status-title">正在連接 Disney+…</strong>
+          <p id="status-detail">請在 Disney+ 開啟一部影片。</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>字幕來源</h2>
+        <label class="field">
+          <span>上方字幕</span>
+          <select id="top-track"></select>
+        </label>
+        <label class="field">
+          <span>下方字幕</span>
+          <select id="bottom-track"></select>
+        </label>
+
+        <div class="file-row">
+          <label class="file-button" for="subtitle-file">匯入 SRT / VTT</label>
+          <input id="subtitle-file" type="file" accept=".srt,.vtt,text/vtt,application/x-subrip" />
+          <button id="clear-file" class="text-button" type="button" hidden>移除外掛字幕</button>
+        </div>
+        <p id="file-name" class="hint">可用自己的字幕取代下方字幕。</p>
+      </section>
+
+      <section class="panel">
+        <h2>同步與外觀</h2>
+        <div class="range-field">
+          <div class="range-label">
+            <label for="offset">時間偏移</label>
+            <output id="offset-value">0.0 秒</output>
+          </div>
+          <input id="offset" type="range" min="-10" max="10" step="0.1" value="0" />
+        </div>
+
+        <div class="range-field">
+          <div class="range-label">
+            <label for="top-font-size">上方字體大小</label>
+            <output id="top-font-size-value">28 px</output>
+          </div>
+          <input id="top-font-size" type="range" min="14" max="52" step="1" value="28" />
+        </div>
+
+        <div class="range-field">
+          <div class="range-label">
+            <label for="bottom-font-size">下方字體大小</label>
+            <output id="bottom-font-size-value">28 px</output>
+          </div>
+          <input id="bottom-font-size" type="range" min="14" max="52" step="1" value="28" />
+        </div>
+
+        <div class="range-field">
+          <div class="range-label">
+            <label for="position">字幕高度</label>
+            <output id="position-value">9%</output>
+          </div>
+          <input id="position" type="range" min="3" max="42" step="1" value="9" />
+        </div>
+
+        <div class="range-field">
+          <div class="range-label">
+            <label for="background">背景深度</label>
+            <output id="background-value">72%</output>
+          </div>
+          <input id="background" type="range" min="0" max="1" step="0.05" value="0.72" />
+        </div>
+
+        <div class="color-grid">
+          <label>上方顏色 <input id="top-color" type="color" value="#ffffff" /></label>
+          <label>下方顏色 <input id="bottom-color" type="color" value="#66d9ff" /></label>
+        </div>
+
+        <label class="check-row">
+          <input id="hide-native" type="checkbox" checked />
+          <span>由擴充功能接管並隱藏 Disney+ 原生字幕</span>
+        </label>
+      </section>
+
+      <button id="reload" class="primary-button" type="button">重新載入 Disney+ 並偵測字幕</button>
+      <p class="privacy">影片不會被下載；字幕只在瀏覽器中暫時處理。</p>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
